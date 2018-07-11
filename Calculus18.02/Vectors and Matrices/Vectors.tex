@@ -1,0 +1,63 @@
+\documentclass{article}
+%%
+%% Author: maciejsrokowski
+%% 11/07/2018
+%%
+
+% Packages
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{siunitx}
+
+% Document
+\begin{document}
+
+    \title{Vectors}
+    \maketitle
+
+
+    \section{Vectors}
+
+    Every vector has a:
+    \begin{itemize}
+        \item Magnitude - that is just length and is obtainable by using pythagorean theorem on all components
+        \item Unit vector - (Denoted as $\vu{A}$)that is a vector with the same direction as the original vector but of the magnitude 1. To obtain it you have to divide every component by the magnitude of the original vector
+    \end{itemize}
+
+    \section{Dot product}
+
+    A way of multiplying two vectors to get a \textbf{scalar}
+    \[\vec{A}\cdot\vec{B}=\sum{a_ib_i}=\cancel{a_1b_1}+a_2b_2+a_3b_3+\dots\]
+    What is it good for? It gives us info about lengths and angles because (this can also be quite a good proof for lat of cosines) It is called dot product because the symbol used for it is a dot! Because the result is a scalar it is also called scalar product:
+    \[\vec{A}\cdot\vec{B}=\abs*{\vec{A}}\abs*{\vec{B}}\cos{\theta}\]
+
+    \newtheorem{exmp}{Example}
+    \newtheorem{problem}{Problem}
+
+    \begin{problem}
+        \begin{itemize}
+            \item[a)]Compute $\bmqty{1 & 2 & -4}\cdot\bmqty{2 & 3 & 5}$
+            \[
+                \bmqty{1 & 2 & -4}\cdot\bmqty{2 & 3 & 5}=2+6-20=-12
+            \]
+            \item[b)] Is the angle between these two vectors acute, obtuse or right?\\
+            The dot product is negative so $\cos{\theta}<$ and that means that $\theta > \frac{\pi}{2}$. The angle is obtuse
+        \end{itemize}
+    \end{problem}
+
+    \begin{problem}
+        Suppose $B=\bmqty{2 & 2 & 1}$. Suppose also that B makes an angle of $\ang{30}$ with A and $A\cdot B=6$. Find $\abs{A}.$\\
+        \begin{align}
+            \sqrt{4 + 4 +1}\cdot\abs{A}\cos{\ang{30}}=6\\
+            \abs{A}=\frac{6\cdot2}{3\cdot\sqrt{3}}=\frac{4}{\sqrt{3}}
+        \end{align}
+    \end{problem}
+
+    \begin{problem}
+        If $A\cdotB=0$ what is the angle between A and B?\\
+        The angle is right or magnitudes of one or both vectors are zero
+    \end{problem}
+
+
+\end{document}
