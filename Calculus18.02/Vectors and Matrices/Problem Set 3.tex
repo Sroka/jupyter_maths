@@ -1,0 +1,125 @@
+%%
+%% Author: maciejsrokowski
+%% 26/08/2018
+%%
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{a4wide}
+
+% Document
+\begin{document}
+
+    \title{Problem Set 3}
+    \maketitle
+
+    \newtheorem{theorem}{Theorem}
+    \newtheorem{definition}{Definition}
+    \newtheorem{example}{Example}
+    \newtheorem{problem}{Problem}
+
+    \section{Parametric equations for lines and curves}
+
+    \begin{problem}
+        \textbf{1E 3c}\\
+        Find in parametric form the equations for all lines passing through $(1, 1, 1)$ and lying in the plane $x + 2y - z = 2$\\
+        The lines parallel to the normal vector of the plane have a vector form:
+        \[\bmqty{ax & by & cz}\]
+        where:
+        \[a + 2b - c =0\]
+        They are also passing through a point $(1, 1, 1)$ when:
+        \[\bmqty{ax+1 & by +1 & -cz +1}\]
+    \end{problem}
+
+    \begin{problem}
+        \textbf{1E 4}\\
+        Where does the line through $( 0,1,2 )$ and $( 2,0,3 )$ intersect the plane $x + 4 y + z = 4$ ?\\
+        The equation of the line can be described by parametric equations:\\
+        \begin{gather*}
+            x = 2t\\
+            y = -t + 1\\
+            z = t + 2
+        \end{gather*}
+        It intersects the plane in the point:\\
+        \begin{gather*}
+            2t + 4(-t + 1) + t + 2 = 4\\
+            t = 2
+        \end{gather*}
+        So the point is:
+        \begin{gather*}
+            \bmeqty{ 4 & - 1 & 4}
+        \end{gather*}
+    \end{problem}
+
+    \begin{problem}
+        \textbf{1I 3}\\
+        Describe the motions given by each of the following position vector functions, as t goes from $-\infty$ to $\infty$. In each case, give the xy-equation of the curve along which P travels, and tell what part of the curve is actually traced out by P .\\
+        \begin{enumerate}
+            \item a) $\mathbf { r } = 2 \cos ^ { 2 } t \mathbf { i } + \sin ^ { 2 } t \mathbf { j }$\\
+            \begin{gather*}
+                x = 2\cos^2{t}\\
+                y = \sin^2{t}\\
+                y = 1 - \cos^2 {t} \\
+                y = 1 - \frac{1}{2} x
+            \end{gather*}
+            \item b) $\mathbf { r } = \cos 2 t \mathbf { i } + \cos t \mathbf { j }$\\
+            \begin{gather*}
+                x = \cos{2t} \\
+                y = \cos{t} \\
+                x = 2\cos^2 {t} - 1\\
+                x = 2y^2 - 1
+            \end{gather*}
+        \end{enumerate}
+    \end{problem}
+
+    \begin{problem}
+        \textbf{1I 5}\\
+        A string is wound clockwise around the circle of radius a centered at the origin O; the initial position of the end P of the string is (a, 0). Unwind the string, always pulling it taut (so it stays tangent to the circle). Write parametric equations for the motion of P .
+        (Use vectors; express the position vector OP as a vector function of one variable.)\\
+        Use the rotation angle $\theta$ as a variable\\
+        Let the Q be the point on the circle that is tangent to the string
+        \begin{gather*}
+            \va{OP} = \va{OQ} + \va{QP} \\
+            \va{OQ} = \bmqty{a\cos{\theta} & a\sin{\theta}} \\
+            \va{QP} = \bmqty{a\theta \cos{90 - \theta} & -a\theta \sin{90 - \theta}}\\
+            \text{Use trig identities of reflected angle}\\
+            \sin{\pi - \theta} = \cos{\theta}\\
+            \cos{\pi - \theta} = \sin{\theta}\\
+            \va{OP} = \bmqty{a(\cos{\theta} + \theta\sin{\theta}) & a(\sin{\theta} - \theta\cos{\theta})}
+        \end{gather*}
+
+    \end{problem}
+
+    \begin{problem}
+        \textbf{1J 2}\\
+        Let $\va{OP} = \frac { 1 } { 1 + t ^ { 2 } } \mathbf { i } + \frac { t } { 1 + t ^ { 2 } } \mathbf { j }$ be the position vector for the motion.
+        \begin{enumerate}
+            \item a) Calculate $v, \vmqty{\frac{ds}{dt}}, T $
+            \item b) At what point is the speed greatest? Smallest?
+            \item c) Find the xy-equation of the curve along which the point P i moving and describe it geometrically
+        \end{enumerate}
+    \end{problem}
+
+    \begin{problem}
+        \textbf{1J 4}
+    \end{problem}
+
+    \begin{problem}
+        \textbf{1J 6}
+    \end{problem}
+
+    \begin{problem}
+        \textbf{1J 9}
+    \end{problem}
+
+    \begin{problem}
+        \textbf{1K 3}
+    \end{problem}
+\end{document}
