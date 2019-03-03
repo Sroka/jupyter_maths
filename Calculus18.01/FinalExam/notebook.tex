@@ -1,0 +1,1096 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{FinalExam}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{calculus-1---final-exam}{%
+\section{Calculus 1 - Final Exam}\label{calculus-1---final-exam}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}332}]:} \PY{o}{\PYZpc{}} \PY{n}{matplotlib} \PY{n}{inline}
+          \PY{k+kn}{from} \PY{n+nn}{sympy} \PY{k}{import} \PY{n}{Function}\PY{p}{,} \PY{n}{Derivative}\PY{p}{,} \PY{n}{Integral}\PY{p}{,} \PY{n}{Eq}\PY{p}{,} \PY{n}{Sum}\PY{p}{,} \PY{n}{solve} 
+          \PY{k+kn}{from} \PY{n+nn}{sympy} \PY{k}{import} \PY{n}{diff}\PY{p}{,} \PY{n}{idiff}
+          \PY{k+kn}{from} \PY{n+nn}{sympy} \PY{k}{import} \PY{n}{Limit}\PY{p}{,} \PY{n}{limit}\PY{p}{,} \PY{n}{limit\PYZus{}seq}
+          \PY{k+kn}{from} \PY{n+nn}{sympy} \PY{k}{import} \PY{n}{sin}\PY{p}{,} \PY{n}{cos}\PY{p}{,} \PY{n}{tan}\PY{p}{,} \PY{n}{sec}\PY{p}{,} \PY{n}{log}\PY{p}{,} \PY{n}{sqrt}\PY{p}{,} \PY{n}{binomial}
+          \PY{k+kn}{from} \PY{n+nn}{sympy} \PY{k}{import} \PY{n}{oo}\PY{p}{,} \PY{n}{E}\PY{p}{,} \PY{n}{pi}
+          \PY{k+kn}{from} \PY{n+nn}{sympy} \PY{k}{import} \PY{n}{symbols}\PY{p}{,} \PY{n}{Symbol}\PY{p}{,} \PY{n}{lambdify}
+          \PY{k+kn}{import} \PY{n+nn}{sympy} \PY{k}{as} \PY{n+nn}{smp}
+          \PY{k+kn}{from} \PY{n+nn}{\PYZus{}\PYZus{}future\PYZus{}\PYZus{}} \PY{k}{import} \PY{n}{division}
+          \PY{k+kn}{from} \PY{n+nn}{sympy}\PY{n+nn}{.}\PY{n+nn}{interactive} \PY{k}{import} \PY{n}{printing}
+          \PY{k+kn}{from} \PY{n+nn}{sympyex} \PY{k}{import} \PY{o}{*}
+          \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k}{import} \PY{n}{linspace}
+          
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          
+          \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{Latex}\PY{p}{,} \PY{n}{Markdown}\PY{p}{,} \PY{n}{Image}\PY{p}{,} \PY{n}{display}
+          
+          \PY{n}{printing}\PY{o}{.}\PY{n}{init\PYZus{}printing}\PY{p}{(}\PY{n}{use\PYZus{}latex}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mathjax}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Compute the following:
+\end{enumerate}
+
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \tightlist
+  \item
+    Find \(\frac{d}{dx}f(x)\) where \(f(x)=x^3e^x\)
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}207}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Using product rule of \PYZcb{}}\PY{l+s+si}{\PYZpc{}(e1)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{ and \PYZcb{}}\PY{l+s+si}{\PYZpc{}(e2)s}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}Answer: \PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+si}{\PYZpc{}(e3)s}\PY{l+s+s2}{=}\PY{l+s+si}{\PYZpc{}(e4)s}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{n}{x} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{f\PYZus{}x} \PY{o}{=} \PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{3} \PY{o}{*} \PY{n}{E} \PY{o}{*}\PY{o}{*} \PY{n}{x}
+          \PY{n}{solution} \PY{o}{=} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{E}\PY{o}{*}\PY{o}{*}\PY{n}{x} \PY{o}{+} \PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{E}\PY{o}{*}\PY{o}{*}\PY{n}{x} 
+          \PY{c+c1}{\PYZsh{} solution = Derivative(f\PYZus{}x, x).doit()}
+          \PY{n}{display\PYZus{}args} \PY{o}{=} \PY{p}{\PYZob{}}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{e1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{(}\PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{3}\PY{p}{)}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{e2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{(}\PY{n}{E} \PY{o}{*}\PY{o}{*} \PY{n}{x}\PY{p}{)}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{e3}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{f\PYZus{}x}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{e4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{solution}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}
+          \PY{p}{\PYZcb{}}
+          \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed} \PY{o}{\PYZpc{}} \PY{n}{display\PYZus{}args}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\text{Using product rule of }x^{3}\text{ and }e^{x} \\
+\text{Answer: } \frac{d}{dx}x^{3} e^{x}=x^{3} e^{x} + 3 x^{2} e^{x}
+\end{equation}
+
+
+    
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Find \(\frac{d^7}{dx^7}f(x)\) where \(f(x)=sin(2x)\)
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}208}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{f(x)=sin(2x)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{f(x)=2cos(2x)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{d\PYZca{}2\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx\PYZca{}2\PYZcb{}f(x)=\PYZhy{}4sin(2x)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{d\PYZca{}3\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx\PYZca{}3\PYZcb{}f(x)=\PYZhy{}8cos(2x)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{d\PYZca{}4\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx\PYZca{}4\PYZcb{}f(x)=16sin(2x)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{d\PYZca{}5\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx\PYZca{}5\PYZcb{}f(x)=32cos(2x)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{d\PYZca{}6\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx\PYZca{}6\PYZcb{}f(x)=\PYZhy{}64sin(2x)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}Answer: \PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{d\PYZca{}7\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx\PYZca{}7\PYZcb{}f(x)=}\PY{l+s+si}{\PYZpc{}(solution)s}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          
+          \PY{n}{x} \PY{o}{=} \PY{n}{Symbol}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{f\PYZus{}x}\PY{o}{=}\PY{n}{sin}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)}
+          \PY{n}{solution} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{128}\PY{o}{*}\PY{n}{cos}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)}
+          \PY{n}{solution} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{f\PYZus{}x}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}
+          \PY{n}{display\PYZus{}args} \PY{o}{=} \PY{p}{\PYZob{}}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{solution}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{solution}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}
+          \PY{p}{\PYZcb{}}
+          \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed} \PY{o}{\PYZpc{}} \PY{n}{display\PYZus{}args}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+f(x)=sin(2x)\\
+\frac{d}{dx}f(x)=2cos(2x)\\
+\frac{d^2}{dx^2}f(x)=-4sin(2x)\\
+\frac{d^3}{dx^3}f(x)=-8cos(2x)\\
+\frac{d^4}{dx^4}f(x)=16sin(2x)\\
+\frac{d^5}{dx^5}f(x)=32cos(2x)\\
+\frac{d^6}{dx^6}f(x)=-64sin(2x)\\
+\text{Answer: }\frac{d^7}{dx^7}f(x)=- 128 \cos{\left (2 x \right )}
+\end{equation}
+
+
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+\end{enumerate}
+
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \tightlist
+  \item
+    Find the tangent line to \(f(x) = 3x^2-5x+2\) at \(x=2\). Express
+    your answer in the form \(g=mx+b\) with slope \emph{m} and
+    y-intercept \emph{b}.
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}209}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Calculating the slope at \PYZcb{}x=2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{f(x)=6x\PYZhy{}5}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{f(2)=12\PYZhy{}5=7}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{g(x)=7x+b}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Calculate intercept\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{g(2)=f(2)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{7*2+b=3*2\PYZca{}2\PYZhy{}5*x+2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{b=12\PYZhy{}10+2\PYZhy{}14=\PYZhy{}10}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{g(x)=7x\PYZhy{}10}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          
+          \PY{n}{x} \PY{o}{=} \PY{n}{Symbol}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{f\PYZus{}x} \PY{o}{=} \PY{l+m+mi}{3} \PY{o}{*} \PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{5} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{l+m+mi}{2}
+          \PY{n}{g\PYZus{}x} \PY{o}{=} \PY{l+m+mi}{7} \PY{o}{*} \PY{n}{x} \PY{o}{\PYZhy{}} \PY{l+m+mi}{10}
+          \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed}\PY{p}{)}
+          \PY{n}{x\PYZus{}pts} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+          \PY{n}{f\PYZus{}x\PYZus{}pts} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{f\PYZus{}x}\PY{p}{)}\PY{p}{(}\PY{n}{x\PYZus{}pts}\PY{p}{)}
+          \PY{n}{g\PYZus{}x\PYZus{}pts} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{g\PYZus{}x}\PY{p}{)}\PY{p}{(}\PY{n}{x\PYZus{}pts}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}pts}\PY{p}{,} \PY{n}{f\PYZus{}x\PYZus{}pts}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}pts}\PY{p}{,} \PY{n}{g\PYZus{}x\PYZus{}pts}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\text{Calculating the slope at }x=2\\
+\frac{d}{dx}f(x)=6x-5\\
+\frac{d}{dx}f(2)=12-5=7\\
+g(x)=7x+b\\
+\text{Calculate intercept}\\
+g(2)=f(2)\\
+7*2+b=3*2^2-5*x+2\\
+b=12-10+2-14=-10\\
+g(x)=7x-10
+\end{equation}
+
+
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}209}]:} <function matplotlib.pyplot.show(*args, **kw)>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Show that the curve defined implicitly by the equation
+    \(xy^3+x^3y=4\) has no horizontal tangent
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}210}]:}     \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Using implicit differentiation\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{    y\PYZca{}3 + x3y\PYZca{}2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dy\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{+ 3x\PYZca{}2y + x\PYZca{}3}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dy\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{ = 0}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dy\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{(3xy\PYZca{}2+x\PYZca{}3)= \PYZhy{}3y\PYZca{}3 \PYZhy{} 3x\PYZca{}2y}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dy\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}3y\PYZca{}3 \PYZhy{} 3x\PYZca{}2y\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{3xy\PYZca{}2+x\PYZca{}3\PYZcb{} = 0}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{    3y\PYZca{}3=\PYZhy{}3x\PYZca{}2y}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{    y=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}x\PYZca{}2\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{, Sympy answer: \PYZcb{}}\PY{l+s+si}{\PYZpc{}(solution)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Answer: As a square from a negative number never has a solution there exists no such x that will have derivative equal to 0 and, thus, won}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{t have horizontal tangent\PYZcb{}}
+          \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+              \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}     y = Function(\PYZsq{}y\PYZsq{})(x)}
+              \PY{n}{equation} \PY{o}{=} \PY{n}{x} \PY{o}{*} \PY{n}{y} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{3} \PY{o}{+} \PY{n}{x} \PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{*} \PY{n}{y} \PY{o}{\PYZhy{}} \PY{l+m+mi}{4}
+              \PY{n}{solution} \PY{o}{=} \PY{n}{Derivative}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{o}{.}\PY{n}{eq}\PY{p}{(}\PY{n}{idiff}\PY{p}{(}\PY{n}{equation}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{eq}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+              
+              
+              \PY{n}{display\PYZus{}args} \PY{o}{=} \PY{p}{\PYZob{}}
+                  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{solution}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{solution}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}
+              \PY{p}{\PYZcb{}}
+              
+              \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed} \PY{o}{\PYZpc{}} \PY{n}{display\PYZus{}args}\PY{p}{)}
+              
+              \PY{n}{plot\PYZus{}implicit}\PY{p}{(}\PY{n}{equation}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\text{Using implicit differentiation}\\
+y^3 + x3y^2\frac{dy}{dx}+ 3x^2y + x^3\frac{dy}{dx} = 0\\
+\frac{dy}{dx}(3xy^2+x^3)= -3y^3 - 3x^2y\\
+\frac{dy}{dx}=\frac{-3y^3 - 3x^2y}{3xy^2+x^3} = 0\\
+3y^3=-3x^2y\\
+y=\sqrt{-x^2}\text{, Sympy answer: }\frac{d}{d x} y = - \frac{y \left(3 x^{2} + y^{2}\right)}{x \left(x^{2} + 3 y^{2}\right)} = 0\\
+\text{Answer: As a square from a negative number never has a solution there exists no such x that will have derivative equal to 0 and, thus, won't have horizontal tangent}
+\end{equation}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        NameError                                 Traceback (most recent call last)
+
+        <ipython-input-210-91b31d811c5c> in <module>()
+         22 display\_latex(displayed \% display\_args)
+         23 
+    ---> 24 plot\_implicit(equation)
+    
+
+        NameError: name 'plot\_implicit' is not defined
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+\end{enumerate}
+
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \tightlist
+  \item
+    Use the DEFINITION of the derivative to compute
+    \(\frac{d}{dz}(\frac{x}{x+1})\)
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+        \PY{l+s+s2}{f(x\PYZus{}0+dx)=}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to 0\PYZcb{} }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZus{}0+dx\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZus{}0+dx+1\PYZcb{}\PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}x\PYZus{}0\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZus{}0+1\PYZcb{}\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to 0\PYZcb{} }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZus{}0\PYZca{}2+x\PYZus{}0+x\PYZus{}0dx+dx\PYZhy{}x\PYZus{}0\PYZca{}2\PYZhy{}x\PYZus{}0dx\PYZhy{}x\PYZus{}0\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZus{}0\PYZca{}2+x\PYZus{}0dx+x\PYZus{}0+x\PYZus{}0+dx+1\PYZcb{}\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to 0\PYZcb{} }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx(x\PYZus{}0\PYZca{}2+2x\PYZus{}0+x\PYZus{}0dx+dx+1)\PYZcb{}=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{dx }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to 0\PYZcb{} }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZus{}0\PYZca{}2+2x\PYZus{}0+x\PYZus{}0dx+dx+1\PYZcb{}= }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZus{}0\PYZca{}2+2x\PYZus{}0+1\PYZcb{} = }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{(x+1)\PYZca{}2\PYZcb{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+        \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Compute the following limit:
+    \[\lim_{x \to \sqrt{3}}\frac{tan^{-1}(x)-\pi/3}{x-\sqrt{3}}\] where
+    as usual \$tan\^{}\{-1\}(x) denotes the inverse tangent function
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Use L}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{Hopital}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{s rule\PYZcb{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{tan\PYZca{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}1\PYZcb{}(x)\PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{pi/3\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{\PYZcb{}=}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{(tan\PYZca{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}1\PYZcb{}(x)\PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{pi/3)\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{(x\PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{)\PYZcb{}=}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{1+x\PYZca{}2\PYZcb{}\PYZcb{}}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{=}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{1+x\PYZca{}2\PYZcb{}=}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{1+x\PYZca{}2\PYZcb{}=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}4\PYZcb{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+        \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Sketch the graph of the function \[y=\frac{x}{x^2+1}\] Be sure to
+  identify in writing all local maxs and mins, regions where the
+  function is increasing/decreasing, points of infplection, symmetries,
+  and verical or horizontal asymptotes (if any of these behaviors occur)
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}246}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Calculate the derivative\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}x\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZca{}2+1\PYZcb{}=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZca{}2 + 1 \PYZhy{} 2x\PYZca{}2\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{(x\PYZca{}2+1)\PYZca{}2\PYZcb{}=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}x\PYZca{}2+1\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{(x\PYZca{}2+1)\PYZca{}2\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Sympy answer: \PYZcb{}}\PY{l+s+si}{\PYZpc{}(derivative)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Find extremas (places where the derivative equals 0)\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Sympy extremas: \PYZcb{}}\PY{l+s+si}{\PYZpc{}(extremas)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Calculate second derivative\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}x\PYZca{}2+1\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{(x\PYZca{}2+1)\PYZca{}2\PYZcb{}=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}2x\PYZca{}2(x\PYZca{}2+1)\PYZca{}2\PYZhy{}(\PYZhy{}x\PYZca{}2+1)4x(x\PYZca{}2+1)\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{(x\PYZca{}2+1)\PYZca{}2\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Sympy answer: \PYZcb{}}\PY{l+s+si}{\PYZpc{}(derivative2)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Find inflection points\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+si}{\PYZpc{}(inflections)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Find asymptotes\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+si}{\PYZpc{}(lim\PYZus{}inf\PYZus{}eq)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+si}{\PYZpc{}(lim\PYZus{}minus\PYZus{}inf\PYZus{}eq)s}
+          
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{n}{x} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{equation} \PY{o}{=} \PY{n}{x} \PY{o}{/} \PY{p}{(}\PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{derivative} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{equation}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+          \PY{n}{derivative2} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{equation}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+          \PY{n}{extremas} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{Eq}\PY{p}{(}\PY{n}{derivative}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{doit}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{inflections} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{Eq}\PY{p}{(}\PY{n}{derivative2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{doit}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{lim\PYZus{}inf\PYZus{}eq} \PY{o}{=} \PY{n}{Limit}\PY{p}{(}\PY{n}{equation}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{oo}\PY{p}{)}
+          \PY{n}{lim\PYZus{}minus\PYZus{}inf\PYZus{}eq} \PY{o}{=} \PY{n}{Limit}\PY{p}{(}\PY{n}{equation}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{oo}\PY{p}{)}
+          
+          
+          \PY{n}{display\PYZus{}args} \PY{o}{=} \PY{p}{\PYZob{}}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{derivative}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{derivative}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{derivative2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{derivative2}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{extremas}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{latex}\PY{p}{(}\PY{n}{extremas}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inflections}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{latex}\PY{p}{(}\PY{n}{inflections}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lim\PYZus{}inf\PYZus{}eq}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{latex}\PY{p}{(}\PY{n}{Eq}\PY{p}{(}\PY{n}{lim\PYZus{}inf\PYZus{}eq}\PY{p}{,} \PY{n}{lim\PYZus{}inf\PYZus{}eq}\PY{o}{.}\PY{n}{doit}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lim\PYZus{}minus\PYZus{}inf\PYZus{}eq}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{latex}\PY{p}{(}\PY{n}{Eq}\PY{p}{(}\PY{n}{lim\PYZus{}minus\PYZus{}inf\PYZus{}eq}\PY{p}{,} \PY{n}{lim\PYZus{}minus\PYZus{}inf\PYZus{}eq}\PY{o}{.}\PY{n}{doit}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{p}{\PYZcb{}}
+          \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed} \PY{o}{\PYZpc{}} \PY{n}{display\PYZus{}args}\PY{p}{)}
+          
+          
+          \PY{n}{x\PYZus{}pts} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+          
+          \PY{n}{y\PYZus{}x\PYZus{}pts} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{equation}\PY{p}{)}\PY{p}{(}\PY{n}{x\PYZus{}pts}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}pts}\PY{p}{,} \PY{n}{y\PYZus{}x\PYZus{}pts}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\textbf{Calculate the derivative}\\
+\frac{d}{dx}\frac{x}{x^2+1}=\frac{x^2 + 1 - 2x^2}{(x^2+1)^2}=\frac{-x^2+1}{(x^2+1)^2}\\
+\text{Sympy answer: }- \frac{2 x^{2}}{\left(x^{2} + 1\right)^{2}} + \frac{1}{x^{2} + 1}\\
+\textbf{Find extremas (places where the derivative equals 0)}\\
+\text{Sympy extremas: }\left [ -1, \quad 1\right ]\\
+\textbf{Calculate second derivative}\\
+\frac{d}{dx}\frac{-x^2+1}{(x^2+1)^2}=\frac{-2x^2(x^2+1)^2-(-x^2+1)4x(x^2+1)}{(x^2+1)^2}\\
+\text{Sympy answer: }\frac{2 x}{\left(x^{2} + 1\right)^{2}} \left(\frac{4 x^{2}}{x^{2} + 1} - 3\right)\\
+\textbf{Find inflection points}\\
+\left [ 0, \quad - \sqrt{3}, \quad \sqrt{3}\right ]\\
+\textbf{Find asymptotes}\\
+\lim_{x \to \infty}\left(\frac{x}{x^{2} + 1}\right) = 0\\
+\lim_{x \to -\infty}\left(\frac{x}{x^{2} + 1}\right) = 0
+
+\end{equation}
+
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  A poster is designed with \(50 in^2\) of printed type, 4 inch margins
+  on both the top and the bottom, and 2 inch margins on each side. Find
+  the dimensions of the poster wich minimize the amount of paper used.
+  (Be sure to indicate why the answer you found is a minimum)
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}247}]:} \PY{n}{display}\PY{p}{(}\PY{n}{Image}\PY{p}{(}\PY{n}{filename} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{5\PYZus{}figure.png}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{200}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}248}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Side of a printable area \PYZhy{} b\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Top/Bottom of a printable area \PYZhy{} a\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{ab=50}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{b=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}50\PYZcb{}}\PY{l+s+si}{\PYZob{}a\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{f(a)=(b+2(4))(a+2(2))}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{f(a)=ab+4b+8a+32}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{f(a)=50+}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}200\PYZcb{}}\PY{l+s+si}{\PYZob{}a\PYZcb{}}\PY{l+s+s2}{+8a+32}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}da\PYZcb{}}\PY{l+s+s2}{f(a)=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}200\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{a\PYZca{}2\PYZcb{} + 8}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{a\PYZca{}2=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}200\PYZcb{}}\PY{l+s+si}{\PYZob{}8\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{a=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}25\PYZcb{}}\PY{l+s+s2}{=5}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{b=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}50\PYZcb{}}\PY{l+s+si}{\PYZob{}a\PYZcb{}}\PY{l+s+s2}{=10}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Answer: The dimensions are \PYZdl{}5+2(2)=9\PYZdl{} and \PYZdl{}10+2(4)=18\PYZdl{}\PYZcb{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          
+          \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\text{Side of a printable area - b}\\
+\text{Top/Bottom of a printable area - a}\\
+ab=50\\
+b=\frac{50}{a}\\
+f(a)=(b+2(4))(a+2(2))\\
+f(a)=ab+4b+8a+32\\
+f(a)=50+\frac{200}{a}+8a+32\\
+\frac{d}{da}f(a)=\frac{-200}{a^2} + 8\\
+a^2=\frac{200}{8}\\
+a=\sqrt{25}=5\\
+b=\frac{50}{a}=10\\
+\text{Answer: The dimensions are $5+2(2)=9$ and $10+2(4)=18$}
+\end{equation}
+
+
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  A highway patrol plane is flying 1 mile a bove a long straight road,
+  with a constant ground speed of 120 m.p.h. Using radar, the pilot
+  detects a car whose distance from the plane is 1.5 miles and
+  decreasing at a rate of 136 m.p.h. How fast is the car traveling along
+  the highway? (Hint: You may give an exact answer, or use the fact that
+  \(\sqrt{5}\approx2.2\)
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{display}\PY{p}{(}\PY{n}{Image}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{6\PYZus{}figure.png}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{200}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}249}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Car distance to plane \PYZhy{} y\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Car distance to plane along the ground \PYZhy{} x\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{x\PYZca{}2+1=y\PYZca{}2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{y=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZca{}2+1\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Differentiate by time\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dy\PYZcb{}}\PY{l+s+si}{\PYZob{}dt\PYZcb{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}2x\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZca{}2+1\PYZcb{}\PYZcb{}(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+si}{\PYZob{}dt\PYZcb{}}\PY{l+s+s2}{)=\PYZhy{}136}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Find \PYZcb{}x\PYZus{}0}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{y\PYZus{}0=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{x=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{y\PYZca{}2\PYZhy{}1\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{x\PYZus{}0=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}5\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+si}{\PYZob{}Substitute\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+si}{\PYZob{}dt\PYZcb{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}136}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x\PYZca{}2+1\PYZcb{}\PYZcb{}}\PY{l+s+si}{\PYZob{}x\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{At \PYZcb{}x\PYZus{}0}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+si}{\PYZob{}dt\PYZcb{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}136(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{)\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}5\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+si}{\PYZob{}dt\PYZcb{}}\PY{l+s+s2}{=\PYZhy{}136}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}5\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Calculate speed by excluding jet speed\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}dc\PYZcb{}}\PY{l+s+si}{\PYZob{}dt\PYZcb{}}\PY{l+s+s2}{=136}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+si}{\PYZob{}5\PYZcb{}}\PY{l+s+s2}{\PYZcb{}\PYZhy{}120}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\text{Car distance to plane - y}\\
+\text{Car distance to plane along the ground - x}\\
+x^2+1=y^2\\
+y=\sqrt{x^2+1}\\
+\textbf{Differentiate by time}\\
+\frac{dy}{dt}=\frac{1}{2}\frac{2x}{\sqrt{x^2+1}}(\frac{dx}{dt})=-136\\
+\textbf{Find }x_0\\
+y_0=\frac{3}{2}\\
+x=\sqrt{y^2-1}\\
+x_0=\frac{\sqrt{5}}{2}\\
+\textbf{Substitute}\\
+\frac{dx}{dt}=\frac{-136\sqrt{x^2+1}}{x}\\
+\text{At }x_0\\
+\frac{dx}{dt}=\frac{-136(\frac{3}{2})}{\frac{\sqrt{5}}{2}}\\
+\frac{dx}{dt}=-136\frac{3}{\sqrt{5}}\\
+\textbf{Calculate speed by excluding jet speed}\\
+\frac{dc}{dt}=136\frac{3}{\sqrt{5}}-120
+\end{equation}
+
+
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Evaluate the following limits:
+\end{enumerate}
+
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \tightlist
+  \item
+    \[\lim_{n \to \infty}\sum_{i=1}^{n}\sqrt{1+\frac{2i}{n}}\frac{2}{n}\]
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{n}\PY{p}{,} \PY{n}{i} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n i}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{eq\PYZus{}7a} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{i}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{sum\PYZus{}7a} \PY{o}{=} \PY{n}{Sum}\PY{p}{(}\PY{n}{eq\PYZus{}7a}\PY{p}{,} \PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{n}\PY{p}{)}\PY{p}{)}  \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{/} \PY{n}{n}\PY{p}{)}
+        \PY{n}{lim\PYZus{}7a} \PY{o}{=} \PY{n}{limit\PYZus{}seq}\PY{p}{(}\PY{n}{sum\PYZus{}7a}\PY{p}{,} \PY{n}{n}\PY{p}{)}
+        \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Wrong SymPy answer: \PYZcb{}}\PY{l+s+si}{\PYZpc{}s}
+        \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+        \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{latex}\PY{p}{(}\PY{n}{lim\PYZus{}7a}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \setcounter{enumi}{1}
+  \item
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}236}]:} \PY{n}{x}\PY{p}{,} \PY{n}{h} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x h}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{eq\PYZus{}7b} \PY{o}{=} \PY{n}{Limit}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{h}\PY{p}{)} \PY{o}{*} \PY{n}{Integral}\PY{p}{(}\PY{n}{sin}\PY{p}{(}\PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2} \PY{o}{+} \PY{n}{h}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{h}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+          \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+si}{\PYZpc{}(equation)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Wrong sympy answer: \PYZcb{}}\PY{l+s+si}{\PYZpc{}(sympy\PYZus{}answer)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Correct answer: \PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+si}{\PYZpc{}(equation)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Using L}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{Hopital}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{s rule\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{h }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to 0\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}d\PYZcb{}}\PY{l+s+si}{\PYZob{}dx\PYZcb{}}\PY{l+s+s2}{(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{int}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{sin(x\PYZca{}2)dx|\PYZca{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{h+2\PYZcb{}\PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{int}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{sin(x\PYZca{}2)dx|\PYZca{}2\PYZcb{}\PYZcb{})\PYZcb{}}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{lim\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{h }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{to 0\PYZcb{}sin((h+2)\PYZca{}2)=sin(4)}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{\PYZob{}}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{equation}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{eq\PYZus{}7b}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sympy\PYZus{}answer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{eq\PYZus{}7b}\PY{o}{.}\PY{n}{doit}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{latex}\PY{p}{(}\PY{p}{)}
+          \PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\lim_{h \to 0^+}\left(\frac{1}{h} \int_{2}^{h + 2} \sin{\left (x^{2} \right )}\, dx\right)\\
+\text{Wrong sympy answer: }\frac{3 \Gamma{\left(\frac{3}{4} \right)}}{4 \Gamma{\left(\frac{7}{4} \right)}} \sin{\left (4 \right )}\\
+\text{Correct answer: }\\
+\lim_{h \to 0^+}\left(\frac{1}{h} \int_{2}^{h + 2} \sin{\left (x^{2} \right )}\, dx\right)\\
+\text{Using L'Hopital's rule}\\
+\lim_{h \to 0}\frac{\frac{d}{dx}(\int{sin(x^2)dx|^{h+2}-\int{sin(x^2)dx|^2}})}{1}\\
+\lim_{h \to 0}sin((h+2)^2)=sin(4)
+\end{equation}
+
+
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Compute the following definite integrals:
+\end{enumerate}
+
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \item
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}283}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+si}{\PYZpc{}(equation)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Analytic answer: \PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{u=sec(x)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{u\PYZca{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{prime=tan(x)sec(x)dx}
+          \PY{l+s+si}{\PYZpc{}(equation)s}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{int\PYZus{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x=0\PYZcb{}\PYZca{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{x=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{pi\PYZcb{}}\PY{l+s+si}{\PYZob{}4\PYZcb{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+si}{\PYZob{}udu\PYZcb{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{u\PYZca{}2 + C=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{sec\PYZca{}2(x)|\PYZus{}0\PYZca{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{pi\PYZcb{}}\PY{l+s+si}{\PYZob{}4\PYZcb{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{cos\PYZca{}2(x)\PYZcb{}|\PYZus{}0\PYZca{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{pi\PYZcb{}}\PY{l+s+si}{\PYZob{}4\PYZcb{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Sympy answer: \PYZcb{}}\PY{l+s+si}{\PYZpc{}(sympy\PYZus{}answer)s}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{n}{x} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{eq\PYZus{}8a} \PY{o}{=} \PY{n}{Integral}\PY{p}{(}\PY{n}{tan}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{*} \PY{n}{sec}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+          \PY{n}{display\PYZus{}args} \PY{o}{=} \PY{p}{\PYZob{}}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{equation}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{latex}\PY{p}{(}\PY{n}{eq\PYZus{}8a}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sympy\PYZus{}answer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{eq\PYZus{}8a}\PY{o}{.}\PY{n}{doit}\PY{p}{(}\PY{p}{)}
+          \PY{p}{\PYZcb{}}
+          \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed} \PY{o}{\PYZpc{}} \PY{n}{display\PYZus{}args}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\int_{0}^{\frac{\pi}{4}} \tan{\left (x \right )} \sec^{2}{\left (x \right )}\, dx\\
+\text{Analytic answer: }\\
+u=sec(x)\\
+u^\prime=tan(x)sec(x)dx
+\int_{0}^{\frac{\pi}{4}} \tan{\left (x \right )} \sec^{2}{\left (x \right )}\, dx=\int_{x=0}^{x=\frac{\pi}{4}}{udu}=\frac{1}{2}u^2 + C=\\
+\frac{1}{2}sec^2(x)|_0^\frac{\pi}{4}=\frac{1}{2}\frac{1}{cos^2(x)}|_0^\frac{\pi}{4}=\frac{1}{2}\\
+\text{Sympy answer: }1/2
+\end{equation}
+
+
+    
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \setcounter{enumi}{1}
+  \item
+  \end{enumerate}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}282}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+si}{\PYZpc{}(equation)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Integration by parts\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{u=log(x)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{ and \PYZcb{}u\PYZca{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{prime=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}x\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{v\PYZca{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{prime=x}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{ and \PYZcb{}v=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{x\PYZca{}2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+si}{\PYZpc{}(equation)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{x\PYZca{}2log(x)|\PYZus{}1\PYZca{}2\PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{int\PYZus{}1\PYZca{}2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{x\PYZca{}2log(x)|\PYZus{}1\PYZca{}2\PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}4\PYZcb{}}\PY{l+s+s2}{x\PYZca{}2|\PYZus{}1\PYZca{}2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}Answer: \PYZcb{}}\PY{l+s+s2}{2log(2) \PYZhy{} }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{log(1) \PYZhy{} }\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+si}{\PYZob{}4\PYZcb{}}
+          
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{SymPy answer: \PYZcb{}}\PY{l+s+si}{\PYZpc{}(sympy\PYZus{}answer)s}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{n}{x} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{eq\PYZus{}8b} \PY{o}{=} \PY{n}{Integral}\PY{p}{(}\PY{n}{x} \PY{o}{*} \PY{n}{log}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+          \PY{n}{display\PYZus{}args} \PY{o}{=} \PY{p}{\PYZob{}}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{equation}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{latex}\PY{p}{(}\PY{n}{eq\PYZus{}8b}\PY{p}{)}\PY{p}{,}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sympy\PYZus{}answer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{eq\PYZus{}8b}\PY{o}{.}\PY{n}{doit}\PY{p}{(}\PY{p}{)}
+          \PY{p}{\PYZcb{}}
+          \PY{n}{display\PYZus{}latex}\PY{p}{(}\PY{n}{displayed} \PY{o}{\PYZpc{}} \PY{n}{display\PYZus{}args}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\int_{1}^{2} x \log{\left (x \right )}\, dx\\
+\text{Integration by parts}\\
+u=log(x)\text{ and }u^\prime=\frac{1}{x}\\
+v^\prime=x\text{ and }v=\frac{1}{2}x^2\\
+\int_{1}^{2} x \log{\left (x \right )}\, dx\\
+\frac{1}{2}x^2log(x)|_1^2-\int_1^2\frac{1}{2}x\\
+\frac{1}{2}x^2log(x)|_1^2-\frac{1}{4}x^2|_1^2\\
+\text{Answer: }2log(2) - \frac{1}{2}log(1) - \frac{3}{4}
+
+\\
+\text{SymPy answer: }-3/4 + 2*log(2)
+\end{equation}
+
+
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Calculate the following indefinite integral:
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}349}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+si}{\PYZpc{}(equation)s}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Use trig substitution\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{9sin(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)=\PYZhy{}9cos\PYZca{}2(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta) + 9}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{x\PYZca{}2=9cos\PYZca{}2(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{x=3cos(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{dx=\PYZhy{}3sin(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{3sin(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}x\PYZca{}2+9\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+si}{\PYZob{}Calculate: \PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+si}{\PYZpc{}(equation)s}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{int}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{9cos\PYZca{}2(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)(\PYZhy{}3)sin(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{3sin(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)\PYZcb{}\PYZcb{}=\PYZhy{}9}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{int}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{cos\PYZca{}2(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Use double angle formula\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZhy{}9}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{int}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{cos\PYZca{}2(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)\PYZcb{}=}
+          \PY{l+s+s2}{\PYZhy{}9}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{int}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{1+cos(2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{\PYZcb{}=}
+          \PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}9\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta+}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s2}{sin(2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta))}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Get the value of \PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{ from \PYZcb{}x=3cos(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta=arccos(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{frac}\PY{l+s+si}{\PYZob{}x\PYZcb{}}\PY{l+s+si}{\PYZob{}3\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          
+          \PY{n}{eq\PYZus{}9} \PY{o}{=} \PY{n}{Integral}\PY{p}{(}\PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{/}\PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{9} \PY{o}{\PYZhy{}} \PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+          
+          \PY{n}{displayed\PYZus{}args} \PY{o}{=} \PY{p}{\PYZob{}}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{equation}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{latex}\PY{p}{(}\PY{n}{eq\PYZus{}9}\PY{p}{)}
+          \PY{p}{\PYZcb{}}
+          \PY{n}{display}\PY{p}{(}\PY{n}{Latex}\PY{p}{(}\PY{n}{displayed} \PY{o}{\PYZpc{}} \PY{n}{displayed\PYZus{}args}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\int \frac{x^{2}}{\sqrt{- x^{2} + 9}}\, dx\\
+
+\textbf{Use trig substitution}\\
+9sin(\theta)=-9cos^2(\theta) + 9\\
+x^2=9cos^2(\theta)\\
+x=3cos(\theta)\\
+dx=-3sin(\theta)\\
+3sin(\theta)=\sqrt{-x^2+9}\\
+
+\textbf{Calculate: }\\
+\int \frac{x^{2}}{\sqrt{- x^{2} + 9}}\, dx=\int{\frac{9cos^2(\theta)(-3)sin(\theta)}{3sin(\theta)}}=-9\int{cos^2(\theta)}\\
+
+\textbf{Use double angle formula}\\
+-9\int{cos^2(\theta)}=
+-9\int{\frac{1+cos(2\theta)}{2}}=
+-\frac{9}{2}(\theta+\frac{1}{2}sin(2\theta))\\
+
+\textbf{Get the value of }\theta\textbf{ from }x=3cos(\theta)\\
+\theta=arccos(\frac{x}{3})\\
+\end{equation}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}353}]:} \PY{n}{displayed} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{textbf}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Figure out what is \PYZcb{}sin(2}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{theta)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Can}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{t do :/\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{\PYZbs{}}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Sympy answer: \PYZcb{}}\PY{l+s+si}{\PYZpc{}(sympy\PYZus{}answer)s}
+          \PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}equation\PYZcb{}}
+          \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          
+          \PY{n}{displayed\PYZus{}args} \PY{o}{=} \PY{p}{\PYZob{}}
+              \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sympy\PYZus{}answer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{latex}\PY{p}{(}\PY{n}{eq\PYZus{}9}\PY{o}{.}\PY{n}{doit}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{p}{\PYZcb{}}
+          
+          \PY{n}{display}\PY{p}{(}\PY{n}{Latex}\PY{p}{(}\PY{n}{displayed} \PY{o}{\PYZpc{}} \PY{n}{displayed\PYZus{}args}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+\begin{equation}
+\textbf{Figure out what is }sin(2\theta)\\
+\text{Can't do :/}\\
+\text{Sympy answer: }- \frac{x}{2} \sqrt{- x^{2} + 9} + \frac{9}{2} \operatorname{asin}{\left (\frac{x}{3} \right )}
+\end{equation}
+
+
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+\end{enumerate}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

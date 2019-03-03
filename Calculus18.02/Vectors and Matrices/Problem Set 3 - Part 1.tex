@@ -102,24 +102,35 @@
         Let $\va{OP} = \frac { 1 } { 1 + t ^ { 2 } } \mathbf { i } + \frac { t } { 1 + t ^ { 2 } } \mathbf { j }$ be the position vector for the motion.
         \begin{enumerate}
             \item a) Calculate $v, \vmqty{\frac{ds}{dt}}, T $
-            \item b) At what point is the speed greatest? Smallest?
+            \begin{align*}
+                v & = \dv{}{t}\sqrt{(\frac{1i}{1 + t^2})^2 + (\frac{tj}{1 + t^2})^2}\\
+                & = \dv{}{t}\frac{\sqrt{i^2 + t^2j^2}}{1 + t^2} \\
+                & = \dv{}{t}\frac{i - tj}{1 + t^2}\\
+                & = \frac{- 2it}{(1 + t^2)^2} + \frac{j}{1 + t^2} - \frac{2t^2 j}{(1 + t^2)^2}\\
+                & = \frac{- 2ti + (1 - t^2)j}{(1 + t^2)^2}
+            \end{align*}
+            \begin{align*}
+                \vmqty{v} & = \sqrt{(\dv{}{t}\frac{1}{1 + t^2})^2 + (\dv{}{t}\frac{t}{1 + t^2})^2} \\
+                & = \sqrt{(\frac{-2t}{(1 + t^2)^2})^2 + (\frac{1 + t^2 - 2t^2}{(1 + t^2)^2})^2}\\
+                & = \frac{\sqrt{4t^2 + 1 + t^4}}{(1 + t^2)^2}\\
+                & = \frac{\sqrt{(t^2 +1)^2}}{(1 + t^2)^2}\\
+                & = \frac{1}{1 + t^2}\\
+            \end{align*}
+
+            \begin{gather*}
+                T = \frac{-2ti+(1-t^2)j}{1+t^2}
+            \end{gather*}
+            \item b) At what point is the speed greatest? Smallest?\\
+            When t equals 0\\
             \item c) Find the xy-equation of the curve along which the point P i moving and describe it geometrically
+            \begin{gather*}
+                y = tx\\
+                x = \frac{1}{1 + t^2}\\
+                t = \sqrt{\frac{1}{x} -1}\\
+                y = x\sqrt{\frac{1}{x} -1}\\
+                y^2 = x - x^2 \\
+                y^2 + x^2 -x =0
+            \end{gather*}
         \end{enumerate}
-    \end{problem}
-
-    \begin{problem}
-        \textbf{1J 4}
-    \end{problem}
-
-    \begin{problem}
-        \textbf{1J 6}
-    \end{problem}
-
-    \begin{problem}
-        \textbf{1J 9}
-    \end{problem}
-
-    \begin{problem}
-        \textbf{1K 3}
     \end{problem}
 \end{document}
